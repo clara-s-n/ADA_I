@@ -1,35 +1,35 @@
 package com.hotel.reservas.controller;
 
-import com.hotel.reservas.model.Habitacion;
-import com.hotel.reservas.service.HabitacionService;
+import com.hotel.reservas.model.Categoria;
+import com.hotel.reservas.service.CategoriaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/habitaciones")
-public class HabitacionController {
-    private final HabitacionService service;
+@RequestMapping("/api/categorias")
+public class CategoriaController {
+    private final CategoriaService service;
 
-    public HabitacionController(HabitacionService service) {
+    public CategoriaController(CategoriaService service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<Habitacion> listar() { return service.listar(); }
+    public List<Categoria> listar() { return service.listar(); }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Habitacion> obtener(@PathVariable Long id) {
+    public ResponseEntity<Categoria> obtener(@PathVariable Long id) {
         return service.obtenerPorId(id)
                 .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Habitacion crear(@RequestBody Habitacion r) { return service.guardar(r); }
+    public Categoria crear(@RequestBody Categoria r) { return service.guardar(r); }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Habitacion> actualizar(@PathVariable Long id, @RequestBody Habitacion r) {
-        Habitacion actualizado = service.actualizar(id, r);
+    public ResponseEntity<Categoria> actualizar(@PathVariable Long id, @RequestBody Categoria r) {
+        Categoria actualizado = service.actualizar(id, r);
         return actualizado != null ? ResponseEntity.ok(actualizado) : ResponseEntity.notFound().build();
     }
 
