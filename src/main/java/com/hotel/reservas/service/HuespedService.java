@@ -35,7 +35,6 @@ public class HuespedService {
                     h.setNombre(nuevo.getNombre());
                     h.setApellido(nuevo.getApellido());
                     h.setPersona(nuevo.getPersona());
-                    h.setIdHistorial(nuevo.getIdHistorial());
                     return repository.save(h);
                 }).orElse(null);
     }

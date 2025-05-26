@@ -1,46 +1,76 @@
 package com.hotel.reservas.controller;
 
+import com.hotel.reservas.dto.ResHabitacionRequest;
+import com.hotel.reservas.model.Habitacion;
 import com.hotel.reservas.model.ResHabitacion;
+import com.hotel.reservas.model.Reserva;
+import com.hotel.reservas.service.HabitacionService;
 import com.hotel.reservas.service.ResHabitacionService;
+import com.hotel.reservas.service.ReservaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/res-habitaciones")
 public class ResHabitacionController {
 
-    private final ResHabitacionService service;
+    private final ResHabitacionService resHabitacionService;
+    private final ReservaService reservaService;
+    private final HabitacionService habitacionService;
 
-    public ResHabitacionController(ResHabitacionService service) {
-        this.service = service;
+    public ResHabitacionController(ResHabitacionService resHabitacionService,
+                                   ReservaService reservaService,
+                                   HabitacionService habitacionService) {
+        this.resHabitacionService = resHabitacionService;
+        this.reservaService = reservaService;
+        this.habitacionService = habitacionService;
     }
 
     @GetMapping
     public List<ResHabitacion> listar() {
-        return service.listar();
+        return resHabitacionService.listar();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ResHabitacion> obtener(@PathVariable Long id) {
-        return service.obtenerPorId(id)
+        return resHabitacionService.obtenerPorId(id)
                 .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResHabitacion crear(@RequestBody ResHabitacion r) {
-        return service.guardar(r);
+    public ResHabitacion crear(@RequestBody ResHabitacionRequest dto) {
+        Reserva reserva = reservaService.obtenerPorId(dto.getReservaId())
+                .orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
+        Habitacion habitacion = habitacionService.obtenerPorId(dto.getHabitacionId())
+                .orElseThrow(() -> new RuntimeException("Habitación no encontrada"));
+
+        ResHabitacion rh = new ResHabitacion();
+        rh.setReserva(reserva);
+        rh.setHabitacion(habitacion);
+
+        return resHabitacionService.guardar(rh);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResHabitacion> actualizar(@PathVariable Long id, @RequestBody ResHabitacion r) {
-        ResHabitacion actualizado = service.actualizar(id, r);
-        return actualizado != null ? ResponseEntity.ok(actualizado) : ResponseEntity.notFound().build();
+    public ResponseEntity<ResHabitacion> actualizar(@PathVariable Long id, @RequestBody ResHabitacionRequest dto) {
+        Reserva reserva = reservaService.obtenerPorId(dto.getReservaId())
+                .orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
+        Habitacion habitacion = habitacionService.obtenerPorId(dto.getHabitacionId())
+                .orElseThrow(() -> new RuntimeException("Habitación no encontrada"));
+
+        ResHabitacion rh = new ResHabitacion();
+        rh.setReserva(reserva);
+        rh.setHabitacion(habitacion);
+
+        ResHabitacion actualizada = resHabitacionService.actualizar(id, rh);
+        return actualizada != null ? ResponseEntity.ok(actualizada) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        service.eliminar(id);
+        resHabitacionService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
 }

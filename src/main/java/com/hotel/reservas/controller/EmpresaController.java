@@ -1,41 +1,71 @@
 package com.hotel.reservas.controller;
 
+import com.hotel.reservas.dto.EmpresaRequest;
 import com.hotel.reservas.model.Empresa;
+import com.hotel.reservas.model.Persona;
 import com.hotel.reservas.service.EmpresaService;
+import com.hotel.reservas.service.PersonaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/empresas")
 public class EmpresaController {
-    private final EmpresaService service;
 
-    public EmpresaController(EmpresaService service) {
-        this.service = service;
+    private final EmpresaService empresaService;
+    private final PersonaService personaService;
+
+    public EmpresaController(EmpresaService empresaService, PersonaService personaService) {
+        this.empresaService = empresaService;
+        this.personaService = personaService;
     }
 
     @GetMapping
-    public List<Empresa> listar() { return service.listar(); }
+    public List<Empresa> listar() {
+        return empresaService.listar();
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Empresa> obtener(@PathVariable Long id) {
-        return service.obtenerPorId(id)
-                .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return empresaService.obtenerPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Empresa crear(@RequestBody Empresa r) { return service.guardar(r); }
+    public Empresa crear(@RequestBody EmpresaRequest dto) {
+        Persona persona = personaService.obtenerPorId(dto.getPersonaId())
+                .orElseThrow(() -> new RuntimeException("Persona no encontrada"));
+
+        Empresa empresa = new Empresa();
+        empresa.setRut(dto.getRut());
+        empresa.setNomFantasia(dto.getNomFantasia());
+        empresa.setRazonSocial(dto.getRazonSocial());
+        empresa.setPersona(persona);
+
+        return empresaService.guardar(empresa);
+    }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Empresa> actualizar(@PathVariable Long id, @RequestBody Empresa r) {
-        Empresa actualizado = service.actualizar(id, r);
-        return actualizado != null ? ResponseEntity.ok(actualizado) : ResponseEntity.notFound().build();
+    public ResponseEntity<Empresa> actualizar(@PathVariable Long id, @RequestBody EmpresaRequest dto) {
+        Persona persona = personaService.obtenerPorId(dto.getPersonaId())
+                .orElseThrow(() -> new RuntimeException("Persona no encontrada"));
+
+        Empresa empresa = new Empresa();
+        empresa.setRut(dto.getRut());
+        empresa.setNomFantasia(dto.getNomFantasia());
+        empresa.setRazonSocial(dto.getRazonSocial());
+        empresa.setPersona(persona);
+
+        Empresa actualizada = empresaService.actualizar(id, empresa);
+        return actualizada != null ? ResponseEntity.ok(actualizada) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        service.eliminar(id);
+        empresaService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
 }
