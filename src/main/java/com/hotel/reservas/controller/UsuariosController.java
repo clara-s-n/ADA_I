@@ -14,13 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/usuarios")
-public class UsuarioController {
+public class UsuariosController {
 
     private final UsuarioService usuarioService;
     private final PersonaService personaService;
     private final RolService rolService;
 
-    public UsuarioController(UsuarioService usuarioService, PersonaService personaService, RolService rolService) {
+    public UsuariosController(UsuarioService usuarioService, PersonaService personaService, RolService rolService) {
         this.usuarioService = usuarioService;
         this.personaService = personaService;
         this.rolService = rolService;

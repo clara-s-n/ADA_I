@@ -12,12 +12,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/empresas")
-public class EmpresaController {
+public class EmpresasController {
 
     private final EmpresaService empresaService;
     private final PersonaService personaService;
 
-    public EmpresaController(EmpresaService empresaService, PersonaService personaService) {
+    public EmpresasController(EmpresaService empresaService, PersonaService personaService) {
         this.empresaService = empresaService;
         this.personaService = personaService;
     }

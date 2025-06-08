@@ -8,10 +8,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tipos")
-public class TipoController {
+public class TiposController {
     private final TipoService service;
 
-    public TipoController(TipoService service) {
+    public TiposController(TipoService service) {
         this.service = service;
     }
 

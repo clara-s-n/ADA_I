@@ -16,14 +16,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/habitaciones")
-public class HabitacionController {
+public class HabitacionesController {
 
     private final HabitacionService habitacionService;
     private final CategoriaService categoriaService;
     private final TipoService tipoService;
     private final EstadoService estadoService;
 
-    public HabitacionController(HabitacionService habitacionService, CategoriaService categoriaService,
+    public HabitacionesController(HabitacionService habitacionService, CategoriaService categoriaService,
                                 TipoService tipoService, EstadoService estadoService) {
         this.habitacionService = habitacionService;
         this.categoriaService = categoriaService;

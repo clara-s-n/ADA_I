@@ -1,35 +1,35 @@
 package com.hotel.reservas.controller;
 
-import com.hotel.reservas.model.Categoria;
-import com.hotel.reservas.service.CategoriaService;
+import com.hotel.reservas.model.Estado;
+import com.hotel.reservas.service.EstadoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/categorias")
-public class CategoriaController {
-    private final CategoriaService service;
+@RequestMapping("/api/estados")
+public class EstadosController {
+    private final EstadoService service;
 
-    public CategoriaController(CategoriaService service) {
+    public EstadosController(EstadoService service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<Categoria> listar() { return service.listar(); }
+    public List<Estado> listar() { return service.listar(); }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Categoria> obtener(@PathVariable Long id) {
+    public ResponseEntity<Estado> obtener(@PathVariable Long id) {
         return service.obtenerPorId(id)
                 .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Categoria crear(@RequestBody Categoria r) { return service.guardar(r); }
+    public Estado crear(@RequestBody Estado r) { return service.guardar(r); }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Categoria> actualizar(@PathVariable Long id, @RequestBody Categoria r) {
-        Categoria actualizado = service.actualizar(id, r);
+    public ResponseEntity<Estado> actualizar(@PathVariable Long id, @RequestBody Estado r) {
+        Estado actualizado = service.actualizar(id, r);
         return actualizado != null ? ResponseEntity.ok(actualizado) : ResponseEntity.notFound().build();
     }
 

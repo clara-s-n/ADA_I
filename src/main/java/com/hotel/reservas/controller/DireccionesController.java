@@ -9,11 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/direcciones")
-public class DireccionController {
+public class DireccionesController {
 
     private final DireccionService service;
 
-    public DireccionController(DireccionService service) {
+    public DireccionesController(DireccionService service) {
         this.service = service;
     }
 

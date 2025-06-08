@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/res-habitaciones")
-public class ResHabitacionController {
+@RequestMapping("/api/res_habitaciones")
+public class Res_habitacionesController {
 
     private final ResHabitacionService resHabitacionService;
     private final ReservaService reservaService;
     private final HabitacionService habitacionService;
 
-    public ResHabitacionController(ResHabitacionService resHabitacionService,
+    public Res_habitacionesController(ResHabitacionService resHabitacionService,
                                    ReservaService reservaService,
                                    HabitacionService habitacionService) {
         this.resHabitacionService = resHabitacionService;

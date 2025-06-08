@@ -17,14 +17,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reservas")
-public class ReservaController {
+public class ReservasController {
 
     private final ReservaService reservaService;
     private final UsuarioService usuarioService;
     private final HuespedService huespedService;
     private final EmpresaService empresaService;
 
-    public ReservaController(ReservaService reservaService, UsuarioService usuarioService,
+    public ReservasController(ReservaService reservaService, UsuarioService usuarioService,
                              HuespedService huespedService, EmpresaService empresaService) {
         this.reservaService = reservaService;
         this.usuarioService = usuarioService;

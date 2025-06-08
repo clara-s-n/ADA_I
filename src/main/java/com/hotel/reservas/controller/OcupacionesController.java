@@ -17,14 +17,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/ocupaciones")
-public class OcupacionController {
+public class OcupacionesController {
 
     private final OcupacionService ocupacionService;
     private final ReservaService reservaService;
     private final HabitacionService habitacionService;
     private final HuespedService huespedService;
 
-    public OcupacionController(OcupacionService ocupacionService,
+    public OcupacionesController(OcupacionService ocupacionService,
                                ReservaService reservaService,
                                HabitacionService habitacionService,
                                HuespedService huespedService) {

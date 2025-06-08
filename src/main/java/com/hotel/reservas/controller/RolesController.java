@@ -9,10 +9,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/roles")
-public class RolController {
+public class RolesController {
     private final RolService service;
 
-    public RolController(RolService service) {
+    public RolesController(RolService service) {
         this.service = service;
     }
 
