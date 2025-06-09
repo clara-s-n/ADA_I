@@ -1,0 +1,32 @@
+<h2>Listado de Habitaciones</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Categoría</th>
+      <th>Tipo</th>
+      <th>Estado</th>
+      <th>Accesible</th>
+      <th>Disponible</th>
+      <th>Precio</th>
+      <th>Observaciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hab of habitaciones">
+      <td>{{ hab.numHabitacion }}</td>
+      <td>{{ hab.categoria.nombre }}</td>
+      <td>{{ hab.tipo.nombre }}</td>
+      <td>{{ hab.estado.nombre }}</td>
+      <td>{{ hab.accesible ? 'Sí' : 'No' }}</td>
+      <td>{{ hab.disponible ? 'Sí' : 'No' }}</td>
+      <td>{{ hab.precio | currency: 'USD' }}</td>
+      <td>{{ hab.observaciones || '-' }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #sinHabitaciones>
+  <p>No hay habitaciones para mostrar.</p>
+</ng-template>

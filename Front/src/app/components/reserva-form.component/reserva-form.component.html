@@ -1,0 +1,25 @@
+<h2>Nueva Reserva</h2>
+
+<form (ngSubmit)="crearReserva()">
+  <label>ID Usuario:</label>
+  <input type="number" [(ngModel)]="reserva.usuarioId" name="usuarioId" required />
+  <br />
+
+  <label>ID Huésped:</label>
+  <input type="number" [(ngModel)]="reserva.huespedId" name="huespedId" required />
+  <br />
+
+  <label>ID Empresa (opcional):</label>
+  <input type="number" [(ngModel)]="reserva.empresaId" name="empresaId" />
+  <br />
+
+  <label>Fecha Ingreso:</label>
+  <input type="datetime-local" [(ngModel)]="reserva.fechaIngreso" name="fechaIngreso" required />
+  <br />
+
+  <label>Fecha Salida:</label>
+  <input type="datetime-local" [(ngModel)]="reserva.fechaSalida" name="fechaSalida" required />
+  <br />
+
+  <button type="submit">Guardar Reserva</button>
+</form>

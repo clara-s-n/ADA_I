@@ -1,0 +1,14 @@
+<h2>Detalle de Habitación</h2>
+
+<div *ngIf="habitacion">
+  <p><strong>ID:</strong> {{ habitacion.id }}</p>
+  <p><strong>Número:</strong> {{ habitacion.numHabitacion }}</p>
+  <p><strong>Precio:</strong> ${{ habitacion.precio }}</p>
+  <p><strong>Accesible:</strong> {{ habitacion.accesible ? 'Sí' : 'No' }}</p>
+  <p><strong>Disponible:</strong> {{ habitacion.disponible ? 'Sí' : 'No' }}</p>
+  <p><strong>Observaciones:</strong> {{ habitacion.observaciones || 'Ninguna' }}</p>
+
+  <p><strong>Estado:</strong> {{ habitacion.estado?.nombre }}</p>
+  <p><strong>Tipo:</strong> {{ habitacion.tipo?.nombre }}</p>
+  <p><strong>Categoría:</strong> {{ habitacion.categoria?.nombre }}</p>
+</div>

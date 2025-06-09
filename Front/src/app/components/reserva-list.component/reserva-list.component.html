@@ -1,0 +1,15 @@
+<h2>Reservas</h2>
+
+<ul *ngIf="reservas.length > 0; else sinReservas">
+  <li *ngFor="let res of reservas">
+    <strong>Reserva #{{ res.id }}</strong> - {{ res.fechaIngreso | date }} a {{ res.fechaSalida | date }}
+    <br />
+    Huesped: {{ res.huesped?.nombre }} {{ res.huesped?.apellido }}
+    <br />
+    <a [routerLink]="['/reservas', res.id]">Ver detalles</a>
+  </li>
+</ul>
+
+<ng-template #sinReservas>
+  <p>No hay reservas registradas.</p>
+</ng-template>

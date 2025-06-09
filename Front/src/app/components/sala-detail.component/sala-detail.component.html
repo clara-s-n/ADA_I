@@ -1,0 +1,13 @@
+<h2>Detalle de Sala</h2>
+
+<div *ngIf="sala; else sinSala">
+  <p><strong>ID:</strong> {{ sala.id }}</p>
+  <p><strong>Capacidad:</strong> {{ sala.capacidad }}</p>
+  <p><strong>Precio:</strong> ${{ sala.precio }}</p>
+  <p><strong>Equipamiento:</strong> {{ sala.equipamiento }}</p>
+  <p><strong>Estado:</strong> {{ sala.estado?.nombre }} - {{ sala.estado?.descripcion }}</p>
+</div>
+
+<ng-template #sinSala>
+  <p>Sala no encontrada.</p>
+</ng-template>

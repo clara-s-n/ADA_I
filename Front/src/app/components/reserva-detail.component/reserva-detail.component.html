@@ -1,0 +1,10 @@
+<h2>Detalle de la Reserva</h2>
+
+<div *ngIf="reserva">
+  <p><strong>ID:</strong> {{ reserva.id }}</p>
+  <p><strong>Ingreso:</strong> {{ reserva.fechaIngreso | date }}</p>
+  <p><strong>Salida:</strong> {{ reserva.fechaSalida | date }}</p>
+  <p><strong>Huésped:</strong> {{ reserva.huesped?.nombre }} {{ reserva.huesped?.apellido }}</p>
+  <p><strong>Usuario:</strong> {{ reserva.usuario?.nombre }} {{ reserva.usuario?.apellido }}</p>
+  <p><strong>Empresa:</strong> {{ reserva.empresa?.nombre || 'Particular' }}</p>
+</div>
