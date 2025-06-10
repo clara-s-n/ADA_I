@@ -12,11 +12,17 @@ import { Router } from '@angular/router';
 })
 export class ReservaFormComponent {
   reserva = {
-    usuarioId: null,
-    huespedId: null,
-    empresaId: null,
+    usuarioId: 1, // Setealo según usuario logueado o de prueba
+    huespedId: 1, // Por ahora se setea fijo, luego se puede crear desde el form
+    empresaId: null, // null si es una persona física
     fechaIngreso: '',
-    fechaSalida: ''
+    fechaSalida: '',
+    nombre: '',
+    apellido: '',
+    telefono: '',
+    ci: '',
+    cantidad: 1,
+    metodoPago: ''
   };
 
   constructor(
@@ -24,14 +30,27 @@ export class ReservaFormComponent {
     private router: Router
   ) {}
 
-crearReserva() {
-  console.log('Enviando reserva:', this.reserva);
-  this.reservaService.createReserva(this.reserva).subscribe({
-    next: () => {
-      alert('Reserva creada correctamente');
-    },
-    error: (err: any) => console.error('Error al crear reserva', err)
-  });
-}
+  crearReserva() {
+    const body = {
+      usuarioId: this.reserva.usuarioId,
+      huespedId: this.reserva.huespedId,
+      empresaId: this.reserva.empresaId,
+      fechaIngreso: this.reserva.fechaIngreso,
+      fechaSalida: this.reserva.fechaSalida
+    };
 
+    console.log('Enviando reserva:', body);
+
+    this.reservaService.createReserva(body).subscribe({
+      next: () => {
+        alert('Reserva creada correctamente');
+        this.router.navigate(['/reservas']);
+      },
+      error: (err: any) => console.error('Error al crear reserva', err)
+    });
+  }
+
+  cancelar() {
+    this.router.navigate(['/reservas']);
+  }
 }

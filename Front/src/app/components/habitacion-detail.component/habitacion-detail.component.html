@@ -1,14 +1,37 @@
-<h2>Detalle de Habitación</h2>
+<div class="min-h-screen bg-green-800 flex items-center justify-center p-8">
+  <div class="bg-white rounded-3xl shadow-lg flex flex-col md:flex-row overflow-hidden w-full max-w-5xl">
+    
+    <!-- Izquierda: Info -->
+    <div class="p-10 flex flex-col justify-center md:w-1/2">
+      <h2 class="text-xl font-light italic">HABITACIÓN</h2>
+      <h3 class="text-3xl font-semibold mb-2">{{ habitacion.numHabitacion }}</h3>
+      
+      <div class="text-gray-700 text-sm mb-4">
+        <span class="mr-4">Capacidad: {{ habitacion.tipo?.nombre === 'doble' ? 2 : 1 }}</span>
+        <span>Precio: USD {{ habitacion.precio }}</span>
+      </div>
+      
+      <p class="text-gray-600 mb-8">
+        {{ habitacion.observaciones || 'Habitación equipada con todas las comodidades básicas.' }}
+      </p>
 
-<div *ngIf="habitacion">
-  <p><strong>ID:</strong> {{ habitacion.id }}</p>
-  <p><strong>Número:</strong> {{ habitacion.numHabitacion }}</p>
-  <p><strong>Precio:</strong> ${{ habitacion.precio }}</p>
-  <p><strong>Accesible:</strong> {{ habitacion.accesible ? 'Sí' : 'No' }}</p>
-  <p><strong>Disponible:</strong> {{ habitacion.disponible ? 'Sí' : 'No' }}</p>
-  <p><strong>Observaciones:</strong> {{ habitacion.observaciones || 'Ninguna' }}</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <button class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-900">
+          Reservar
+        </button>
+        <button class="bg-gray-700 text-white px-6 py-2 rounded-full hover:bg-gray-800">
+          Ver disponibilidad
+        </button>
+      </div>
+    </div>
 
-  <p><strong>Estado:</strong> {{ habitacion.estado?.nombre }}</p>
-  <p><strong>Tipo:</strong> {{ habitacion.tipo?.nombre }}</p>
-  <p><strong>Categoría:</strong> {{ habitacion.categoria?.nombre }}</p>
+    <!-- Derecha: Imagen fija -->
+    <div class="md:w-1/2">
+      <img 
+        src="https://www.es.kayak.com/rimg/himg/0d/10/7e/leonardo-102237-150257091-809618.jpg?width=1366&height=768&crop=true" 
+        alt="Habitación" 
+        class="object-cover h-full w-full"
+      >
+    </div>
+  </div>
 </div>
