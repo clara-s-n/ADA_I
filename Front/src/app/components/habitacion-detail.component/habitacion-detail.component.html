@@ -7,7 +7,7 @@
       <h3 class="text-3xl font-semibold mb-2">{{ habitacion.numHabitacion }}</h3>
       
       <div class="text-gray-700 text-sm mb-4">
-        <span class="mr-4">Capacidad: {{ habitacion.tipo?.nombre === 'doble' ? 2 : 1 }}</span>
+        <span class="mr-4">Tipo: {{ habitacion.tipo?.nombre || 'No especificado' }}</span>
         <span>Precio: USD {{ habitacion.precio }}</span>
       </div>
       
@@ -16,9 +16,18 @@
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4">
-        <button class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-900">
+        <a 
+          [routerLink]="['/reservas/nueva']" 
+          [queryParams]="{ 
+            habitacionId: habitacion.id, 
+            numHabitacion: habitacion.numHabitacion, 
+            tipo: habitacion.tipo?.nombre 
+          }"
+          class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-900"
+        >
           Reservar
-        </button>
+        </a>
+        
         <button class="bg-gray-700 text-white px-6 py-2 rounded-full hover:bg-gray-800">
           Ver disponibilidad
         </button>

@@ -4,8 +4,11 @@
     <!-- Lado izquierdo -->
     <div>
       <h2 class="text-lg font-light">HABITACIÓN</h2>
-      <p class="text-2xl italic font-semibold text-gray-700">205</p>
-      <p class="mt-1 text-sm text-gray-600">Capacidad: 2</p>
+      <p class="text-2xl italic font-semibold text-gray-700">{{ habitacionNumero || '-' }}</p>
+      <p class="mt-1 text-sm text-gray-600">
+        Tipo: {{ habitacionTipoNombre }}
+      </p>
+      
 
       <div class="mt-8 space-y-4">
         <div>

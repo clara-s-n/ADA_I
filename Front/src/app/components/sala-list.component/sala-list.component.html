@@ -14,7 +14,7 @@
     <td>{{ sala.capacidad }}</td>
     <td>{{ sala.precio }}</td>
     <td>{{ sala.equipamiento }}</td>
-    <td>{{ sala.estado?.nombre }}</td>
+    <td>{{ sala.estado.nombre }}</td>
     <td><a [routerLink]="['/salas', sala.id]">Ver Detalle</a></td>
   </tr>
 </table>

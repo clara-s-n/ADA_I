@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReservaService } from '../../services/reserva.js';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'reserva-form',
@@ -12,9 +12,9 @@ import { Router } from '@angular/router';
 })
 export class ReservaFormComponent {
   reserva = {
-    usuarioId: 1, // Setealo según usuario logueado o de prueba
-    huespedId: 1, // Por ahora se setea fijo, luego se puede crear desde el form
-    empresaId: null, // null si es una persona física
+    usuarioId: 1,
+    huespedId: 1,
+    empresaId: null,
     fechaIngreso: '',
     fechaSalida: '',
     nombre: '',
@@ -22,13 +22,24 @@ export class ReservaFormComponent {
     telefono: '',
     ci: '',
     cantidad: 1,
-    metodoPago: ''
+    metodoPago: '',
+    habitacionId: null as number | null 
   };
+
+  habitacionNumero: string | null = null;
+  habitacionTipoNombre: string | null = null;
 
   constructor(
     private reservaService: ReservaService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe(params => {
+      this.reserva.habitacionId = params['habitacionId'] ? parseInt(params['habitacionId'], 10) : null;
+      this.habitacionNumero = params['numHabitacion'] || null;
+      this.habitacionTipoNombre = params['tipo'] || null; // 👈 NUEVO: capturamos el tipo
+    });
+  }
 
   crearReserva() {
     const body = {
@@ -36,7 +47,8 @@ export class ReservaFormComponent {
       huespedId: this.reserva.huespedId,
       empresaId: this.reserva.empresaId,
       fechaIngreso: this.reserva.fechaIngreso,
-      fechaSalida: this.reserva.fechaSalida
+      fechaSalida: this.reserva.fechaSalida,
+      habitacionId: this.reserva.habitacionId
     };
 
     console.log('Enviando reserva:', body);

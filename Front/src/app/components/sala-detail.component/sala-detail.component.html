@@ -5,7 +5,7 @@
   <p><strong>Capacidad:</strong> {{ sala.capacidad }}</p>
   <p><strong>Precio:</strong> ${{ sala.precio }}</p>
   <p><strong>Equipamiento:</strong> {{ sala.equipamiento }}</p>
-  <p><strong>Estado:</strong> {{ sala.estado?.nombre }} - {{ sala.estado?.descripcion }}</p>
+  <p><strong>Estado:</strong> {{ sala.estado.nombre }} - {{ sala.estado.descripcion }}</p>
 </div>
 
 <ng-template #sinSala>

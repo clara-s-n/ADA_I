@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HabitacionService } from '../../services/habitacion.js';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'habitacion-detail',
   standalone: true,
-  templateUrl: './habitacion-detail.component.html'
+  templateUrl: './habitacion-detail.component.html',
+  imports: [CommonModule, RouterModule]
 })
 export class HabitacionDetailComponent implements OnInit {
   habitacion: any;
