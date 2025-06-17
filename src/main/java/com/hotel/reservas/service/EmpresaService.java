@@ -1,6 +1,7 @@
 package com.hotel.reservas.service;
 
 import com.hotel.reservas.model.Empresa;
+import com.hotel.reservas.model.Huesped;
 import com.hotel.reservas.repository.EmpresaRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,9 @@ public class EmpresaService {
     public Optional<Empresa> obtenerPorId(Long id) {
         return repository.findById(id);
     }
+    public Optional<Empresa> obtenerPorRut(String rut) {
+    return repository.findByRut(rut);
+}
 
     public Empresa guardar(Empresa e) {
         return repository.save(e);

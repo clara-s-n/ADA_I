@@ -1,0 +1,12 @@
+<h1 class="text-xl mb-4">Huéspedes</h1>
+<ul class="space-y-1">
+  <li *ngFor="let h of huespedes">
+    <a [routerLink]="['/huespedes', h.id]" class="text-blue-600 underline">
+      {{ h.ci }} – {{ h.nombre }} {{ h.apellido }}
+    </a>
+  </li>
+</ul>
+
+<a routerLink="/huespedes/nuevo" class="inline-block mt-4 text-green-700 underline">
+  ➕ Nuevo huésped
+</a>

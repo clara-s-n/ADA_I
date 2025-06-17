@@ -22,7 +22,12 @@ public class HuespedService {
 
     public Optional<Huesped> obtenerPorId(Long id) {
         return repository.findById(id);
+        
     }
+    public Optional<Huesped> obtenerPorCi(String ci) {
+        return repository.findByCi(ci);
+    }
+    
 
     public Huesped guardar(Huesped h) {
         return repository.save(h);

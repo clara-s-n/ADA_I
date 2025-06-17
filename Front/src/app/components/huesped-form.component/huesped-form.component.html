@@ -1,0 +1,18 @@
+<h1 class="text-xl mb-4">Nuevo huésped</h1>
+
+<form (ngSubmit)="guardar()" class="space-y-4 max-w-md">
+  <label class="block">
+    CI
+    <input [(ngModel)]="modelo.ci" name="ci" class="border p-1 w-full" required />
+  </label>
+  <label class="block">
+    Nombre
+    <input [(ngModel)]="modelo.nombre" name="nombre" class="border p-1 w-full" required />
+  </label>
+  <label class="block">
+    Apellido
+    <input [(ngModel)]="modelo.apellido" name="apellido" class="border p-1 w-full" required />
+  </label>
+
+  <button type="submit" class="bg-black text-white px-4 py-1 rounded">Guardar</button>
+</form>

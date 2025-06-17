@@ -33,6 +33,13 @@ public class HuespedesController {
                 .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/ci/{ci}")
+    public ResponseEntity<Huesped> getByCi(@PathVariable String ci) {
+        return huespedService.obtenerPorCi(ci)
+                .map(h -> ResponseEntity.ok(h))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     public Huesped crear(@RequestBody HuespedRequest dto) {
         Persona persona = personaService.obtenerPorId(dto.getPersonaId())

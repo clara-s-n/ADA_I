@@ -9,6 +9,12 @@ import { HabitacionListComponent } from './components/habitacion-list.component/
 import { HabitacionDetailComponent } from './components/habitacion-detail.component/habitacion-detail.component.js';
 import { SalaDetailComponent } from './components/sala-detail.component/sala-detail.component.js';
 import { SalaListComponent } from './components/sala-list.component/sala-list.component.js';
+import { HuespedListComponent } from './components/huesped-list.component/huesped-list.component.js';
+import { HuespedFormComponent } from './components/huesped-form.component/huesped-form.component.js';
+import { HuespedDetailComponent } from './components/huesped-detail.component/huesped-detail.component.js';
+import { EmpresaListComponent } from './components/empresa-list.component/empresa-list.component.js';
+import { EmpresaFormComponent } from './components/empresa-form.component/empresa-form.component.js';
+import { EmpresaDetailComponent } from './components/empresa-detail.component/empresa-detail.component.js';
 export const routes: Routes = [
   { path: '', redirectTo: 'categorias', pathMatch: 'full' },
   { path: 'categorias', component: CategoriaListComponent },
@@ -20,6 +26,14 @@ export const routes: Routes = [
   { path: 'habitaciones', component: HabitacionListComponent },
   { path: 'habitaciones/:id', component: HabitacionDetailComponent },
   { path: 'salas', component: SalaListComponent },
-  { path: 'salas/:id', component: SalaDetailComponent }
+  { path: 'salas/:id', component: SalaDetailComponent },
+  { path: 'huespedes',        component: HuespedListComponent },
+  { path: 'huespedes/nuevo',  component: HuespedFormComponent },
+  { path: 'huespedes/:id',    component: HuespedDetailComponent },
+
+  { path: 'empresas',         component: EmpresaListComponent },
+  { path: 'empresas/nueva',   component: EmpresaFormComponent },
+  { path: 'empresas/:id',     component: EmpresaDetailComponent },
 ];
+
 

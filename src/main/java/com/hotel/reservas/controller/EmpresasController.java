@@ -2,6 +2,7 @@ package com.hotel.reservas.controller;
 
 import com.hotel.reservas.dto.EmpresaRequest;
 import com.hotel.reservas.model.Empresa;
+import com.hotel.reservas.model.Huesped;
 import com.hotel.reservas.model.Persona;
 import com.hotel.reservas.service.EmpresaService;
 import com.hotel.reservas.service.PersonaService;
@@ -33,6 +34,14 @@ public class EmpresasController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/rut/{rut}")
+    public ResponseEntity<Empresa> getByRut(@PathVariable String rut) {
+        return empresaService.obtenerPorRut(rut)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+    
 
     @PostMapping
     public Empresa crear(@RequestBody EmpresaRequest dto) {
