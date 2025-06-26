@@ -14,8 +14,17 @@ public class Usuario {
     @Column(unique = true, nullable = false)
     private String ci;
 
+    @Column(nullable = false)
     private String nombre;
+
+    @Column(nullable = false)
     private String apellido;
+
+    @Column(name = "nombre_usuario", unique = true, nullable = false)
+    private String nombreUsuario;
+
+    @Column(nullable = false)
+    private String contrasenia;
 
     @ManyToOne
     @JoinColumn(name = "id_persona")
