@@ -26,7 +26,6 @@ export interface Habitacion {
   };
 }
 
-
 @Injectable({ providedIn: 'root' })
 export class HabitacionService {
   private apiUrl = 'http://localhost:8080/api/habitaciones';
@@ -34,10 +33,11 @@ export class HabitacionService {
   constructor(private http: HttpClient) {}
 
   getHabitaciones(): Observable<Habitacion[]> {
-    return this.http.get<Habitacion[]>(this.apiUrl);
+    return this.http.get<Habitacion[]>(this.apiUrl, { withCredentials: true });
   }
   getHabitacion(id: number): Observable<Habitacion> {
-    return this.http.get<Habitacion>(`${this.apiUrl}/${id}`);
+    return this.http.get<Habitacion>(`${this.apiUrl}/${id}`, {
+      withCredentials: true,
+    });
   }
-  
 }
