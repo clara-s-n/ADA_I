@@ -53,6 +53,11 @@ public class AuthController {
     public void register(@RequestBody NuevoUsuario nuevoUsuario) {
         authService.register(nuevoUsuario);
     }
+
+    @PostMapping("/registro")
+    public void registro(@RequestBody RegistroRequest request) {
+        authService.register(request);
+    }
 }
 
 

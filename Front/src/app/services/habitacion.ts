@@ -8,7 +8,7 @@ export interface Habitacion {
   disponible: boolean;
   precio: number;
   numHabitacion: number;
-  observaciones?: string; // <--- esta línea es la que falta
+  observaciones?: string;
   categoria: {
     id: number;
     nombre: string;

@@ -45,4 +45,22 @@ export class AuthService {
       { withCredentials: true }
     );
   }
+
+  register(data: any) {
+    return this.http.post('http://localhost:8080/api/auth/register', data, {
+      withCredentials: true,
+    });
+  }
+
+  registerCompleto(data: any) {
+    return this.http.post('http://localhost:8080/api/auth/registro', data, {
+      withCredentials: true,
+    });
+  }
+
+  getRoles() {
+    return this.http.get<any[]>('http://localhost:8080/api/roles', {
+      withCredentials: true,
+    });
+  }
 }

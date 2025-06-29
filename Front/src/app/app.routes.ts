@@ -18,9 +18,12 @@ import { EmpresaListComponent } from './components/empresa-list.component/empres
 import { EmpresaFormComponent } from './components/empresa-form.component/empresa-form.component';
 import { EmpresaDetailComponent } from './components/empresa-detail.component/empresa-detail.component';
 import { LayoutComponent } from './components/layout.component/layout.component';
+import { RegisterComponent } from './components/register.component/register.component';
+import { AdminGuard } from './services/admin.guard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [AdminGuard] },
 
   {
     path: '',

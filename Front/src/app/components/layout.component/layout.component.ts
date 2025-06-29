@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   standalone: true,
@@ -10,6 +11,8 @@ import { RouterModule } from '@angular/router';
 })
 export class LayoutComponent {
   sidebarOpen = false;
+
+  constructor(private authService: AuthService) {}
 
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
@@ -21,5 +24,10 @@ export class LayoutComponent {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.location.href = '/login';
+  }
+
+  esAdmin(): boolean {
+    const usuario = this.authService.obtenerUsuario();
+    return !!usuario && usuario.rol === 'Admin';
   }
 }

@@ -7,4 +7,13 @@ import { RouterModule } from '@angular/router';
   templateUrl: './home.component.html',
   imports: [RouterModule],
 })
-export class HomeComponent {}
+export class HomeComponent {
+  sidebarAbierta = false;
+
+  abrirSidebar() {
+    this.sidebarAbierta = true;
+  }
+  cerrarSidebar() {
+    this.sidebarAbierta = false;
+  }
+}
