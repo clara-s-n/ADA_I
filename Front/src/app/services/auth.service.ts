@@ -22,7 +22,9 @@ export class AuthService {
     nombreUsuario: string;
     contrasenia: string;
   }): Observable<UsuarioInfo> {
-    return this.http.post<UsuarioInfo>(`${this.apiUrl}/login`, data);
+    return this.http.post<UsuarioInfo>(`${this.apiUrl}/login`, data, {
+      withCredentials: true,
+    });
   }
 
   // Método opcional para guardar el usuario en localStorage
@@ -37,5 +39,28 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('usuarioLogueado');
+    return this.http.post(
+      `${this.apiUrl}/logout`,
+      {},
+      { withCredentials: true }
+    );
+  }
+
+  register(data: any) {
+    return this.http.post('http://localhost:8080/api/auth/register', data, {
+      withCredentials: true,
+    });
+  }
+
+  registerCompleto(data: any) {
+    return this.http.post('http://localhost:8080/api/auth/registro', data, {
+      withCredentials: true,
+    });
+  }
+
+  getRoles() {
+    return this.http.get<any[]>('http://localhost:8080/api/roles', {
+      withCredentials: true,
+    });
   }
 }

@@ -3,11 +3,18 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-home.component',
   imports: [ CommonModule, RouterModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  sidebarAbierta = false;
 
+  abrirSidebar() {
+    this.sidebarAbierta = true;
+  }
+  cerrarSidebar() {
+    this.sidebarAbierta = false;
+  }
 }
