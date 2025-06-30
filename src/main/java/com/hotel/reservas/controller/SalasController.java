@@ -39,6 +39,7 @@ public class SalasController {
                 .orElseThrow(() -> new RuntimeException("Estado no encontrado"));
 
         Sala sala = new Sala();
+        sala.setNombre(dto.getNombre());
         sala.setCapacidad(dto.getCapacidad());
         sala.setPrecio(dto.getPrecio());
         sala.setEquipamiento(dto.getEquipamiento());
@@ -53,6 +54,7 @@ public class SalasController {
                 .orElseThrow(() -> new RuntimeException("Estado no encontrado"));
 
         Sala sala = new Sala();
+        sala.setNombre(dto.getNombre());
         sala.setCapacidad(dto.getCapacidad());
         sala.setPrecio(dto.getPrecio());
         sala.setEquipamiento(dto.getEquipamiento());

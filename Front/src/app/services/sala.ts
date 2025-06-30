@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 export interface Sala {
   id: number;
+  nombre: string;
   capacidad: number;
   precio: number;
   equipamiento: string;
@@ -14,9 +15,8 @@ export interface Sala {
   };
 }
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SalaService {
   private apiUrl = 'http://localhost:8080/api/salas';
@@ -24,10 +24,12 @@ export class SalaService {
   constructor(private http: HttpClient) {}
 
   getSalas(): Observable<Sala[]> {
-    return this.http.get<Sala[]>(this.apiUrl);
+    return this.http.get<Sala[]>(this.apiUrl, { withCredentials: true });
   }
 
   getSala(id: number): Observable<Sala> {
-    return this.http.get<Sala>(`${this.apiUrl}/${id}`);
+    return this.http.get<Sala>(`${this.apiUrl}/${id}`, {
+      withCredentials: true,
+    });
   }
 }

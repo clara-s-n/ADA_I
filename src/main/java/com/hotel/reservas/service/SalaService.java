@@ -17,7 +17,9 @@ public class SalaService {
     }
 
     public List<Sala> listar() {
-        return repository.findAll();
+        List<Sala> salas = repository.findAll();
+        salas.forEach(s -> System.out.println("Sala: " + s.getEstado()));
+        return salas;
     }
 
     public Optional<Sala> obtenerPorId(Long id) {
@@ -31,6 +33,7 @@ public class SalaService {
     public Sala actualizar(Long id, Sala nueva) {
         return repository.findById(id)
                 .map(s -> {
+                    s.setNombre(nueva.getNombre());
                     s.setCapacidad(nueva.getCapacidad());
                     s.setEstado(nueva.getEstado());
                     s.setPrecio(nueva.getPrecio());

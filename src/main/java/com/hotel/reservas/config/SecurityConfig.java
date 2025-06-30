@@ -29,7 +29,6 @@ public class SecurityConfig {
             .cors(Customizer.withDefaults())
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll() // << permite todas las rutas
                 .requestMatchers("/api/auth/**").permitAll()
                 .anyRequest().authenticated()
             )
@@ -42,10 +41,9 @@ public class SecurityConfig {
             .sessionManagement(session -> session
                 .sessionFixation().none()  
             );
-    
+
         return http.build();
     }
-    
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {

@@ -5,6 +5,9 @@ import lombok.Data;
 
 @Data
 public class SalaRequest {
+    @Schema(example = "Sala de Conferencias A")
+    private String nombre;
+
     @Schema(example = "50")
     private int capacidad;
 

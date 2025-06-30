@@ -12,6 +12,7 @@ public class Sala {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nombre;
     private int capacidad;
     private int precio;
     private String equipamiento;
