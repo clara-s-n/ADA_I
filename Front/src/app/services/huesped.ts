@@ -1,14 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Huesped } from '../models/huesped.model';
 
-export interface Huesped {
-  id?: number;
-  ci: string;
-  nombre: string;
-  apellido: string;
-  // …añade lo que necesites
-}
 
 @Injectable({ providedIn: 'root' })
 export class HuespedService {

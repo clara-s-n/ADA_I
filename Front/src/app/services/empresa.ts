@@ -1,25 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Empresa {
-  id?: number;
-  rut: string;
-  nomFantasia: string;
-  razonSocial: string;
-  persona?: {
-    telefono: string;
-    email: string;
-    direccion: {
-      pais: string;
-      departamento: string;
-      ciudad: string;
-      calle: string;
-      numPuerta: string;
-    }
-  }
-}
-
+import { Empresa } from '../models/empresa.model';
 
 @Injectable({ providedIn: 'root' })
 export class EmpresaService {

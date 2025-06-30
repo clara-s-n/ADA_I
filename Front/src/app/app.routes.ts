@@ -18,9 +18,10 @@ import { HuespedDetailComponent } from './components/huesped-detail.component/hu
 import { EmpresaListComponent } from './components/empresa-list.component/empresa-list.component.js';
 import { EmpresaFormComponent } from './components/empresa-form.component/empresa-form.component.js';
 import { EmpresaDetailComponent } from './components/empresa-detail.component/empresa-detail.component.js';
+import { Component } from '@angular/core';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'categorias', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
   { path: 'categorias', component: CategoriaListComponent },
   { path: 'categorias/nueva', component: CategoriaFormComponent },
   { path: 'categorias/:id', component: CategoriaDetailComponent },
@@ -31,4 +32,8 @@ export const routes: Routes = [
   { path: 'habitaciones/:id', component: HabitacionDetailComponent },
   { path: 'salas', component: SalaListComponent },
   { path: 'salas/:id', component: SalaDetailComponent },
+  { path: 'huespedes', component: HuespedListComponent},
+  { path: 'huespedes/nuevo', component: HuespedFormComponent},
+  { path: 'huespedes/:id', component: HuespedDetailComponent},
+  { path: 'empresas/nueva', component: EmpresaFormComponent}
 ];

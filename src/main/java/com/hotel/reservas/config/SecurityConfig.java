@@ -25,15 +25,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .cors(Customizer.withDefaults()) // activa CORS con configuración abajo
-            .csrf(csrf -> csrf.disable())   // desactiva CSRF para desarrollo
+            .cors(Customizer.withDefaults())
+            .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll() // permite login
-                .anyRequest().authenticated()                // el resto requiere auth
+                .anyRequest().permitAll() // << permite todas las rutas
             );
-
+    
         return http.build();
     }
+    
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {

@@ -36,7 +36,6 @@ export class ReservaFormComponent {
     fechaSalida: '',
     telefono: '',
     cantidad: 1,
-    metodoPago: '',
   };
 
   constructor(
@@ -101,7 +100,6 @@ export class ReservaFormComponent {
       fechaIngreso: this.reserva.fechaIngreso,
       fechaSalida: this.reserva.fechaSalida,
       cantidad: this.reserva.cantidad,
-      metodoPago: this.reserva.metodoPago,
       telefono: this.reserva.telefono,
     };
 

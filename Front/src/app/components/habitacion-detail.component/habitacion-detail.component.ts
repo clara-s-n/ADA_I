@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HabitacionService } from '../../services/habitacion.js';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'habitacion-detail',
@@ -15,9 +16,13 @@ export class HabitacionDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private habitacionService: HabitacionService
+    private habitacionService: HabitacionService,
+    private location: Location
   ) {}
 
+  Volver(){
+    this.location.back()
+  }
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.habitacionService.getHabitacion(Number(id)).subscribe(data => {

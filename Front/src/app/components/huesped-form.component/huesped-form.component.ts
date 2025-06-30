@@ -1,21 +1,52 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { HuespedService, Huesped } from '../../services/huesped.js';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+import { HuespedService } from '../../services/huesped';
+import { Huesped } from '../../models/huesped.model';
 
 @Component({
-  selector: 'huesped-form',
+  selector: 'app-huesped-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './huesped-form.component.html',
 })
 export class HuespedFormComponent {
-  modelo: Huesped = { ci: '', nombre: '', apellido: '' };
+  huesped: Huesped = {
+    ci: '',
+    nombre: '',
+    apellido: '',
+    personaId: 1,
+  };
 
-  constructor(private srv: HuespedService, private router: Router) {}
+  constructor(
+    private huespedSrv: HuespedService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  guardar() {
-    this.srv.create(this.modelo).subscribe(() => this.router.navigate(['/huespedes']));
+  crear(): void {
+    this.huespedSrv.create(this.huesped).subscribe({
+      next: (huespedCreado: Huesped) => {
+        const { habitacionId, tipo, numHabitacion } = this.route.snapshot.queryParams;
+
+        this.router.navigate(['/reservas/nueva'], {
+          queryParams: {
+            habitacionId,
+            tipo,
+            numHabitacion,
+            ci: huespedCreado.ci,
+          },
+        });
+      },
+      error: (err) => {
+        console.error('Error al crear huésped:', err);
+      },
+    });
+  }
+
+  cancelar(): void {
+    this.router.navigate(['/huespedes']);
   }
 }

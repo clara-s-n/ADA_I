@@ -10,6 +10,7 @@ export interface Reserva {
   usuario: any;   // podés definir interfaz más adelante
   huesped: any;
   empresa?: any;
+  telefono: string;
 }
 
 @Injectable({
